@@ -1,0 +1,306 @@
+<HTML>
+
+<HEAD>
+	<STYLE type="text/css">
+		TD {
+			cursor: hand;
+			padding:0px;
+		}
+
+		TD BUTTON {
+			width: 18px;
+			height: 18px;
+			font-size: 8pt;
+			padding: 0px;
+			margin: 0px;
+		}
+	</STYLE>
+	<SCRIPT language="JavaScript">
+		var cvet0 = 'white';
+		var cvet1 = 'black';
+		var cvet2 = 'gray';
+
+		// задание правильно заполненной таблицы - двумерного массива
+
+		var mas1 = [
+			[0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0],
+			[0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0],
+
+			[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0],
+			[0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0],
+			[0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0],
+			[0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0],
+			[0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0],
+
+			[0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+			[0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1],
+			[0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1],
+			[0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0],
+			[0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0],
+
+			[0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0],
+			[0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0],
+
+			[0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0],
+			[0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0],
+			[0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0],
+			[0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0],
+
+			[0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+			[0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+			[1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0],
+			[1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0],
+			[1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0]
+		];
+
+		var m1 = mas1.length;
+		var n1 = mas1[0].length;
+
+		// задание верхней таблицы
+		var mas2 = new Array();
+		// задание боковой таблицы
+		var mas3 = new Array();
+
+		calcNum(mas1, mas2, mas3);
+
+		var m2 = mas2.length;
+		var n2 = mas2[0].length;
+		var m3 = mas3.length;
+		var n3 = mas3[0].length;
+
+
+		// вычисление значений боковой и верхней таблицы
+
+		function calcNum(dataCr, num2Res, num1Res) {
+			var sum, max;
+			var num1 = new Array(), num2 = new Array();
+			// Заполняем массив горизонтальный 	
+			for (i = 0; i < dataCr.length; i++) {
+				sum = 0;
+				num1[i] = new Array();
+				for (j = 0; j < dataCr[i].length; j++) {
+					if (dataCr[i][j] != 0) {
+						sum += dataCr[i][j];
+					} else {
+						if (sum != 0) num1[i][num1[i].length] = sum;
+						sum = 0;
+					}
+				}
+				if (sum != 0) num1[i][num1[i].length] = sum;
+			}
+			// заполняем вертикальный массив	
+			for (j = 0; j < dataCr[0].length; j++) {
+				sum = 0;
+				num2[j] = new Array();
+				for (i = 0; i < dataCr.length; i++) {
+					if (dataCr[i][j] != 0) {
+						sum += dataCr[i][j];
+					} else {
+						if (sum != 0) num2[j][num2[j].length] = sum;
+						sum = 0;
+					}
+				}
+				if (sum != 0) num2[j][num2[j].length] = sum;
+			}
+			// заполняем нулями значения (дополняем по прямоугольника)
+			max = 0;
+			for (i = 0; i < num1.length; i++) {
+				if (num1[i].length > max) max = num1[i].length;
+			}
+			for (i = 0; i < max; i++) num1Res[i] = new Array(num1.length);
+
+			for (i = 0; i < num1.length; i++)
+				for (j = 0; j < max; j++) {
+					if (typeof (num1[i][j]) == 'undefined') num1[i][j] = 0;
+					num1Res[j][i] = num1[i][j];
+				}
+
+			max = 0;
+			for (j = 0; j < num2.length; j++) {
+				if (num2[j].length > max) max = num2[j].length;
+			}
+			for (i = 0; i < max; i++) num2Res[i] = new Array(num2.length);
+
+			for (j = 0; j < num2.length; j++)
+				for (i = 0; i < max; i++) {
+					if (typeof (num2[j][i]) == 'undefined') num2[j][i] = 0;
+					num2Res[i][j] = num2[j][i];
+				}
+			// подвигаем значения к краю
+			for (j = 0; j < num1Res[0].length; j++) {
+				i = 0;
+				while ((i < num1Res.length) && (num1Res[i][j] != 0)) i++;
+				if (i < num1Res.length)
+					for (k = 1; k <= i; k++) {
+						num1Res[num1Res.length - k][j] = num1Res[i - k][j];
+						num1Res[i - k][j] = 0;
+					}
+			}
+			for (j = 0; j < num2Res[0].length; j++) {
+				i = 0;
+				while ((i < num2Res.length) && (num2Res[i][j] != 0)) i++;
+				if (i < num2Res.length)
+					for (k = 1; k <= i; k++) {
+						num2Res[num2Res.length - k][j] = num2Res[i - k][j];
+						num2Res[i - k][j] = 0;
+					}
+			}
+		}
+
+		//функция динамического создания основной таблицы размером m1xn1
+		function drawTable() {
+			var tab = "<TABLE id=myTable style='' onClick='doCross();'>";
+			// задание тегов строк
+			for (var i = 0; i < m1; i++) {
+				tab += "<TR>";
+				// задание тегов ячеек
+				for (var j = 0; j < n1; j++)
+					tab += "<TD><BUTTON style='BACKGROUND-COLOR: white' id = 'id" + i + "_" + j + "'></BUTTON></TD>";
+				tab += "</TR>";
+			}
+			tab += "</TABLE>";
+			// возвращается значение переменной, 
+			// описывающей теговую структуру таблицы
+			return tab;
+		}
+
+		//функция динамического создания верхней таблицы размером m2xn2
+		function drawTable_Top() {
+			var tab = "<TABLE id=myTable2 style='' onClick='doCross1();'>";
+			// задание тегов строк
+			for (var i = 0; i < m2; i++) {
+				tab += "<TR>";
+				// задание тегов ячеек
+				for (var j = 0; j < n2; j++) {
+					if (mas2[i][j] != 0) tab += "<TD><BUTTON style='BACKGROUND-COLOR: #eeeeee'>" + mas2[i][j] + "</BUTTON></TD>";
+					else tab += "<TD><BUTTON style='BACKGROUND-COLOR: #eeeeee'></BUTTON></TD>";
+				}
+				tab += "</TR>";
+			}
+			tab += "</TABLE>";
+			// возвращается значение переменной, 
+			// описывающей теговую структуру таблицы
+			return tab;
+		}
+
+		//функция динамического создания левой таблицы размером m3xn3
+		function drawTable_Left() {
+			var tab = "<TABLE id=myTable3 style='' onClick='doCross1();'>";
+			// задание тегов строк
+			for (var i = 0; i < n3; i++) {
+				tab += "<TR>";
+				// задание тегов ячеек
+				for (var j = 0; j < m3; j++) {
+					if (mas3[j][i] != 0) tab += "<TD><BUTTON style='BACKGROUND-COLOR: rgb(238, 238, 238)'>" + mas3[j][i] + "</BUTTON></TD>";
+					else tab += "<TD><BUTTON style='BACKGROUND-COLOR: rgb(238, 238, 238)'></BUTTON></TD>";
+				}
+				tab += "</TR>";
+			}
+			tab += "</TABLE>";
+			// возвращается значение переменной, 
+			// описывающей теговую структуру таблицы
+			return tab;
+		}
+
+		// функция изменения фона основной таблицы
+		function doCross() {
+			// проверка события щелчка в ячейке таблицы
+			if ("BUTTON" == event.srcElement.tagName) {
+				var shot = event.srcElement;
+				//меняет цвет в ячейке таблицы по кругу
+				if (cvet0 == shot.style['background-color'])
+					shot.style['background-color'] = cvet1;
+				else
+					if (cvet1 == shot.style['background-color']) shot.style['background-color'] = cvet2;
+					else if (cvet2 == shot.style['background-color']) shot.style['background-color'] = cvet0;
+			}
+		}
+
+		// функция изменения фона вспомогательных таблиц
+		function doCross1() {
+			// проверка события щелчка в ячейке таблицы
+			if ("BUTTON" == event.srcElement.tagName) {
+				var shot = event.srcElement;
+				//запоминаем надпись на кнопке
+				//var label_button = shot.outerText;
+
+				//меняет цвет в ячейке таблицы по кругу
+				cvet_old = 'rgb(238, 238, 238)';
+				cvet_new = 'yellow';
+
+				if (cvet_old == shot.style['background-color']) {
+					shot.style['background-color'] = cvet_new;
+				} else {
+					shot.style['background-color'] = cvet_old;
+				}
+			}
+		}
+
+		// анализ заполненной таблицы
+		function rezult() {
+			var isOk = true;
+
+			// формирование массива по заполнной таблице
+			for (i = 0; i < m1; i++) {
+				for (j = 0; j < n1; j++) {
+					var btn = document.getElementById("id" + i + "_" + j);
+					if (
+						((btn.style['background-color'] == cvet1) && (mas1[i][j] == 0)) ||
+						((btn.style['background-color'] != cvet1) && (mas1[i][j] == 1))
+					) isOk = false;
+				}
+			}
+
+			// выдача сообщения о результатах
+			if (isOk) alert("Вы ПРАВИЛЬНО разгадали кроссоворд");
+			else alert("Вы НЕПРАВИЛЬНО разгадали кроссоворд");
+		}
+
+		// правильный ответ
+		function otvet() {
+			for (var i = 0; i < m1; i++) {
+				for (var j = 0; j < n1; j++) {
+					var btn = document.getElementById("id" + i + "_" + j);
+					if (mas1[i][j] == 0) btn.style['background-color'] = cvet0;
+					else btn.style['background-color'] = cvet1;
+				}
+			}
+		}
+
+		//функция очистки таблицы
+		function cleen() {
+			for (var i = 0; i < m1; i++)
+				for (var j = 0; j < n1; j++) {
+					var btn = document.getElementById("id" + i + "_" + j);
+					btn.style['background-color'] = cvet0;
+				}
+		}
+
+	</SCRIPT>
+</HEAD>
+
+<BODY background=fon.gif>
+	<SCRIPT LANGUAGE="JavaScript">
+		document.write('<table><tr><td></td><td>');
+		document.write(drawTable_Top());
+		document.write('</td></tr><tr><td>');
+		document.write(drawTable_Left());
+		document.write('</td><td>');
+		document.write(drawTable());
+		document.write('</td></tr></table>');
+	</SCRIPT>
+	<DIV>
+		<button onclick='rezult();'> Результат </button>
+		<button onclick='otvet();'> Ответ </button>
+		<button onclick='cleen();'> Очистить </button>
+	</DIV>
+</BODY>
+
+</HTML>
